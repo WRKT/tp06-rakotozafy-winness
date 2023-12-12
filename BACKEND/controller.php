@@ -128,14 +128,13 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 		]';
 	   
 	    if ($filtre) {
-	      $data = json_decode($flux, true); 
-	    	
-		$res = array_filter($data, function($obj) use ($filtre)
-		{ 
-		    return strpos($obj["nom"], $filtre) !== false;
-		});
-		$response->getBody()->write(json_encode(array_values($res)));
-	    } else {
+	    	$data = json_decode($flux, true); 
+	    	$res = array_filter($data, function($obj) use ($filtre){ 
+		    return strpos($obj["nom"], $filtre) !== false;});
+		
+			$response->getBody()->write(json_encode(array_values($res)));
+	    } 
+		else {
 		 $response->getBody()->write($flux);
 	    }
 
@@ -260,7 +259,6 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 	function optionsUtilisateur (Request $request, Response $response, $args) {
 	    
-	    // Evite que le front demande une confirmation à chaque modification
 	    $response = $response->withHeader("Access-Control-Max-Age", 600);
 	    
 	    return addHeaders ($response);

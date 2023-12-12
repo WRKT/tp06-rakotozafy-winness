@@ -16,7 +16,6 @@ import { HeaderComponent } from './components/header/header.component';
 import { BodyComponent } from './components/body/body.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ListeProduitComponent } from './components/liste-produit/liste-produit.component';
-import { SearchComponent } from './components/search/search.component';
 import { PanierComponent } from './components/panier/panier.component';
 
 // States
@@ -31,7 +30,6 @@ import { ApiHttpInterceptor } from './http-interceptor';
     BodyComponent,
     FooterComponent,
     ListeProduitComponent,
-    SearchComponent,
     PanierComponent,
     LoginComponent,
   ],

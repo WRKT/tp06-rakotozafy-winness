@@ -17,7 +17,9 @@ export class ProduitService {
     }
 
     search(term: string) {
-      console.log(term);
+      if (term === '') {
+        return of([]);
+      }
       return this.http.get(`https://si-web-winness-rakotozafy.onrender.com/api/catalogue/${term}`)
     }
 }

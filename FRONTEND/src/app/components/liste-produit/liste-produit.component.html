@@ -1,4 +1,17 @@
-<app-search></app-search>
+<div class="row mt-4">
+  <div class="col-md-4">
+    <form>
+      <label class="fs-5 form-label">Recherche :</label>
+      <input
+        #input 
+        type="text"
+        class="form-control mb-4"
+        placeholder="Nom produit, categorie, ..." 
+        >
+    </form>
+  </div>
+</div>
+
 <table class="table borderless">
   <thead>
     <tr>
@@ -9,8 +22,8 @@
       <th>Prix</th>
     </tr>
   </thead>
-  <tbody>
-    <tr *ngFor="let produit of produits">
+  <tbody *ngIf="model | async as response">
+    <tr *ngFor="let produit of response.items">
       <td>{{ produit.id }}</td>
       <td>{{ produit.nom }}</td>
       <td>{{ produit.description }}</td>
