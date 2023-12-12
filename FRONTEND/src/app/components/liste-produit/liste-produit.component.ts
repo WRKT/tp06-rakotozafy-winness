@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Output,EventEmitter } from '@angular/core';
 import { ProduitService } from 'src/services/produit.service';
 import { Produit } from 'src/app/shared/models/produit.model';
 import { AddProduit } from 'src/app/shared/actions/panier-actions';
 import { Store } from '@ngxs/store';
 import { Observable, fromEvent, of } from 'rxjs';
-import { map, distinctUntilChanged, debounceTime, tap, switchMap, catchError } from 'rxjs/operators';
+import { map, distinctUntilChanged, debounceTime, switchMap, catchError } from 'rxjs/operators';
 
 
 @Component({
@@ -14,17 +14,13 @@ import { map, distinctUntilChanged, debounceTime, tap, switchMap, catchError } f
 })
 
 export class ListeProduitComponent implements OnInit {
-  produits: Produit[] = [];
   model?: Observable<any>;
   searchField$?: Observable<any>;
 
-  constructor(private produitService : ProduitService, private store: Store) { }
-
-  ngOnInit(): void {
-    this.produitService.getProduits().subscribe(data => {
-      this.produits = data;
-    });
+  constructor(private produitService : ProduitService, private store: Store) { 
   }
+
+  ngOnInit(): void { }
 
   addProduit(produit: Produit) {
     this.store.dispatch(new AddProduit(produit));
